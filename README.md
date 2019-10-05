@@ -1,4 +1,6 @@
-# afk-arena
+# AFK Arena Manager
+This is a pet project focused on learning Firebase.
+It's a simple hero manager for the game AFK Arena. 
 
 ## Project setup
 ```
