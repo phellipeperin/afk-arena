@@ -1,5 +1,7 @@
 <template>
     <v-app>
+        <main-header />
+
         <v-content>
             <v-container fluid>
                 <v-row>
@@ -15,10 +17,11 @@
 </template>
 
 <script>
+    import MainHeader from './components/header/MainHeader.vue';
     import MessageContainer from './components/feedback/MessageContainer.vue';
 
     export default {
         name: 'App',
-        components: { MessageContainer },
+        components: { MainHeader, MessageContainer },
     };
 </script>
