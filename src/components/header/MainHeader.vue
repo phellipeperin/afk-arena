@@ -13,15 +13,9 @@
         <v-toolbar-items>
             <v-btn
                 text
-                @click="goToHeroes"
+                @click="logout"
             >
-                <span>Heroes</span>
-            </v-btn>
-            <v-btn
-                text
-                @click="goToStatistics"
-            >
-                <span>Statistics</span>
+                <span>Logout</span>
             </v-btn>
         </v-toolbar-items>
     </v-app-bar>
@@ -31,8 +25,9 @@
     export default {
         name: 'MainHeader',
         methods: {
-            goToHeroes() { this.$router.push('/heroes'); },
-            goToStatistics() { this.$router.push('/statistics'); },
+            logout() {
+                // TODO
+            },
         },
     };
 </script>
