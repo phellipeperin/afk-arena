@@ -1,8 +1,9 @@
 export default {
     name: 'heroBuilderService',
     methods: {
-        createHero(name, title, type, faction, image) {
+        createHero(id, name, title, type, faction, image) {
             return {
+                id,
                 name,
                 title,
                 type,

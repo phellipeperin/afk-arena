@@ -77,10 +77,11 @@
         },
         methods: {
             changeAscension() {
+                this.$emit('changeAscension', this.ascension);
                 this.$emit('changeAscensionColor', this.getAscensionColor());
             },
             changeSignature() {
-
+                this.$emit('changeSignature', this.signature);
             },
             getAscensionColor() {
                 if (this.ascension === 1 || this.ascension === 2) return 'deep-purple darken-2';

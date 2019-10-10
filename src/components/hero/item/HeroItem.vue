@@ -24,6 +24,8 @@
             <v-divider />
             <hero-item-power
                 :faction="hero.faction"
+                @changeAscension="setAscension"
+                @changeSignature="setSignature"
                 @changeAscensionColor="setAscensionColor"
             />
             <v-divider />
@@ -35,6 +37,8 @@
 </template>
 
 <script>
+    import firebase from 'firebase'; // TODO must go to a mixin or store
+
     import HeroItemFaction from './HeroItemFaction.vue';
     import HeroItemType from './HeroItemType.vue';
     import HeroItemPower from './HeroItemPower.vue';
@@ -57,6 +61,23 @@
             };
         },
         methods: {
+            setAscension(ascension) {
+                // const { currentUser } = firebase.auth();
+                // const db = {};
+                //
+                // db.collection('heroes').doc(currentUser.email).set({
+                //     name: 'Los Angeles',
+                //     state: 'CA',
+                //     country: 'USA',
+                // }).then(() => {
+                //     console.log('Document successfully written!');
+                // }).catch((error) => {
+                //     console.error('Error writing document: ', error);
+                // });
+            },
+            setSignature(signature) {
+
+            },
             setAscensionColor(color) { this.ascensionColor = color; },
         },
     };
