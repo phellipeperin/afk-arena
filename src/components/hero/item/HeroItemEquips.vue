@@ -5,20 +5,11 @@
     >
         <v-row>
             <hero-item-equip-unit
+                v-for="equip in equipList"
+                :key="equip"
                 :color="color"
-                label="WEAPON"
-            />
-            <hero-item-equip-unit
-                :color="color"
-                label="HEAD"
-            />
-            <hero-item-equip-unit
-                :color="color"
-                label="BODY"
-            />
-            <hero-item-equip-unit
-                :color="color"
-                label="FEET"
+                :label="equip"
+                @change="(status) => changeEquip(equip, status)"
             />
         </v-row>
     </v-container>
@@ -32,6 +23,14 @@
         components: { HeroItemEquipUnit },
         props: {
             color: { type: String, default: 'primary' },
+        },
+        data() {
+            return {
+                equipList: ['WEAPON', 'HEAD', 'BODY', 'FEET'],
+            };
+        },
+        methods: {
+            changeEquip(equip, status) { this.$emit('changeEquip', equip, status); },
         },
     };
 </script>

@@ -31,6 +31,7 @@
             <v-divider />
             <hero-item-equips
                 :color="ascensionColor"
+                @changeEquip="setEquip"
             />
         </v-card>
     </v-alert>
