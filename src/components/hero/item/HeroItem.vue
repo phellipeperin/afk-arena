@@ -62,23 +62,31 @@
         },
         methods: {
             setAscension(ascension) {
-                // const { currentUser } = firebase.auth();
-                // const db = {};
-                //
-                // db.collection('heroes').doc(currentUser.email).set({
-                //     name: 'Los Angeles',
-                //     state: 'CA',
-                //     country: 'USA',
-                // }).then(() => {
-                //     console.log('Document successfully written!');
-                // }).catch((error) => {
-                //     console.error('Error writing document: ', error);
-                // });
+                const dbObj = {};
+                dbObj[this.hero.id] = { ascension };
+                this.saveToFirebase(dbObj);
             },
             setSignature(signature) {
-
+                const dbObj = {};
+                dbObj[this.hero.id] = { signature };
+                this.saveToFirebase(dbObj);
+            },
+            setEquip(equip, status) {
+                const dbObj = {};
+                dbObj[this.hero.id] = { equips: {} };
+                dbObj[this.hero.id].equips[equip] = status;
+                this.saveToFirebase(dbObj);
             },
             setAscensionColor(color) { this.ascensionColor = color; },
+            saveToFirebase(dbObj) {
+                firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).set(dbObj, { merge: true })
+                    .then(() => {
+                        console.log('Document successfully written!');
+                    })
+                    .catch((error) => {
+                        console.error('Error writing document: ', error);
+                    });
+            },
         },
     };
 </script>
