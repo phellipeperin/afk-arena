@@ -62,8 +62,8 @@
             return {
                 filter: {
                     text: '',
-                    faction: [],
-                    type: [],
+                    faction: ['CELESTIAL', 'HYPOGEAN', 'LIGHTBEARER', 'MAULER', 'WYLDER', 'GRAVEBORN'],
+                    type: ['STR', 'DEX', 'INT'],
                 },
                 factions: [
                     { text: 'Celestial', value: 'CELESTIAL' },
@@ -81,9 +81,7 @@
             };
         },
         methods: {
-            apply() {
-                // TODO
-            },
+            apply() { this.$emit('apply', this.filter); },
         },
     };
 </script>

@@ -12,6 +12,7 @@
                 <v-checkbox
                     hide-details
                     class="mt-0"
+                    color="primary"
                     label="WEAPON"
                 />
             </v-col>
@@ -23,6 +24,7 @@
                 <v-checkbox
                     hide-details
                     class="mt-0"
+                    color="primary"
                     label="HEAD"
                 />
             </v-col>
@@ -34,6 +36,7 @@
                 <v-checkbox
                     hide-details
                     class="mt-0"
+                    color="primary"
                     label="BODY"
                 />
             </v-col>
@@ -45,6 +48,7 @@
                 <v-checkbox
                     hide-details
                     class="mt-0"
+                    color="primary"
                     label="FEET"
                 />
             </v-col>
