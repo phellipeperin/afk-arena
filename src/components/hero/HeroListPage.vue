@@ -40,17 +40,17 @@
             };
         },
         created() {
-            this.filteredHeroList = this.heroList;
+            this.filteredHeroList = Object.freeze(this.heroList);
         },
         methods: {
             applyFilter(filter) {
-                this.filteredHeroList = this.heroList.filter((elem) => {
+                this.filteredHeroList = Object.freeze(this.heroList.filter((elem) => {
                     const text = filter.text ? filter.text.toLowerCase() : '';
                     const hasText = !text || (elem.name.toLowerCase().indexOf(text) !== -1 || elem.title.toLowerCase().indexOf(text) !== -1);
                     const hasFaction = Boolean(filter.faction.length && filter.faction.includes(elem.faction));
                     const hasType = Boolean(filter.type.length && filter.type.includes(elem.type));
                     return hasText && hasFaction && hasType;
-                });
+                }));
             },
         },
     };
