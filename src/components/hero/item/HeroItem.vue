@@ -1,25 +1,37 @@
 <template>
-    <v-card outlined>
-        <v-list-item three-line>
-            <v-list-item-content>
-                <v-list-item-title class="headline">{{ hero.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{ hero.title }}</v-list-item-subtitle>
-                <v-list-item-subtitle>
-                    <hero-item-faction :faction="hero.faction" />
-                    <hero-item-type :type="hero.type" />
-                </v-list-item-subtitle>
-            </v-list-item-content>
+    <v-alert
+        colored-border
+        border="left"
+        class="pa-0 ma-0"
+        :color="ascensionColor"
+    >
+        <v-card outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <v-list-item-title class="headline">{{ hero.name }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ hero.title }}</v-list-item-subtitle>
+                    <v-list-item-subtitle>
+                        <hero-item-faction :faction="hero.faction" />
+                        <hero-item-type :type="hero.type" />
+                    </v-list-item-subtitle>
+                </v-list-item-content>
 
-            <v-list-item-avatar size="80">
-                <img :src="hero.image">
-            </v-list-item-avatar>
-        </v-list-item>
+                <v-list-item-avatar size="80">
+                    <img :src="hero.image">
+                </v-list-item-avatar>
+            </v-list-item>
 
-        <v-divider />
-        <hero-item-power :faction="hero.faction" />
-        <v-divider />
-        <hero-item-equips />
-    </v-card>
+            <v-divider />
+            <hero-item-power
+                :faction="hero.faction"
+                @changeAscensionColor="setAscensionColor"
+            />
+            <v-divider />
+            <hero-item-equips
+                :color="ascensionColor"
+            />
+        </v-card>
+    </v-alert>
 </template>
 
 <script>
@@ -38,6 +50,14 @@
         },
         props: {
             hero: { type: Object, required: true },
+        },
+        data() {
+            return {
+                ascensionColor: '',
+            };
+        },
+        methods: {
+            setAscensionColor(color) { this.ascensionColor = color; },
         },
     };
 </script>

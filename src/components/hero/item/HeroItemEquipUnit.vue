@@ -7,7 +7,7 @@
         <v-checkbox
             hide-details
             class="mt-0"
-            color="primary"
+            :color="color"
             :label="label"
         />
     </v-col>
@@ -17,7 +17,8 @@
     export default {
         name: 'HeroItemEquipUnit',
         props: {
-            label: { type: String, default: '' },
+            label: { type: String, required: true },
+            color: { type: String, default: 'primary' },
         },
     };
 </script>

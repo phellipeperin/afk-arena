@@ -9,9 +9,12 @@
                 sm="7"
             >
                 <v-select
+                    v-model="ascension"
                     hide-details
                     :items="ascensionLevels"
+                    :color="getAscensionColor()"
                     label="Ascension"
+                    @change="changeAscension"
                 />
             </v-col>
             <v-col
@@ -19,9 +22,12 @@
                 sm="5"
             >
                 <v-select
+                    v-model="signature"
                     hide-details
                     :items="signatureLevels"
+                    :color="getAscensionColor()"
                     label="Signature"
+                    @change="changeSignature"
                 />
             </v-col>
         </v-row>
@@ -33,9 +39,13 @@
         name: 'HeroItemPower',
         props: {
             faction: { type: String, required: true },
+            initialAscension: { type: Number, default: 0 },
+            initialSignature: { type: Number, default: 0 },
         },
         data() {
             return {
+                ascension: 0,
+                signature: 0,
                 ascensionLevels: [
                     { text: 'None', value: 0 },
                     { text: 'Elite', value: 1 },
@@ -60,6 +70,30 @@
             for (let i = 1; i <= max; i++) {
                 this.signatureLevels.push({ text: `+${i}`, value: i });
             }
+
+            this.ascension = this.initialAscension;
+            this.signature = this.initialSignature;
+            this.$emit('changeAscensionColor', this.getAscensionColor());
+        },
+        methods: {
+            changeAscension() {
+                this.$emit('changeAscensionColor', this.getAscensionColor());
+            },
+            changeSignature() {
+
+            },
+            getAscensionColor() {
+                if (this.ascension === 1 || this.ascension === 2) return 'deep-purple darken-2';
+                if (this.ascension === 3 || this.ascension === 4) return 'yellow accent-3';
+                if (this.ascension === 5 || this.ascension === 6) return 'red darken-4';
+                if (this.ascension === 7) return 'primary';
+                if (this.ascension === 8) return 'pink';
+                if (this.ascension === 9) return 'pink darken-1';
+                if (this.ascension === 10) return 'pink darken-2';
+                if (this.ascension === 11) return 'pink darken-3';
+                if (this.ascension === 12) return 'pink darken-4';
+                return 'blue-grey darken-1';
+            },
         },
     };
 </script>
@@ -67,3 +101,4 @@
 <style scoped>
 
 </style>
+.
