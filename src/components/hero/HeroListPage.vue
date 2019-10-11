@@ -18,13 +18,17 @@
                 sm="4"
                 md="3"
             >
-                <hero-item :hero="hero" />
+                <hero-item
+                    :hero="hero"
+                />
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     import heroDatabase from './database/heroDatabase';
 
     import HeroFilter from './filter/HeroFilter.vue';
@@ -37,10 +41,16 @@
         data() {
             return {
                 filteredHeroList: [],
+                databaseList: [],
             };
         },
         created() {
             this.filteredHeroList = Object.freeze(this.heroList);
+            firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).get().then((doc) => {
+                if (doc.exists) {
+                    console.log(doc);
+                }
+            });
         },
         methods: {
             applyFilter(filter) {

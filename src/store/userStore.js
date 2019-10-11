@@ -1,6 +1,10 @@
 /* eslint-disable no-param-reassign */
 export default {
     namespaced: true,
-    state: {},
-    mutations: {},
+    state: {
+        user: null,
+    },
+    mutations: {
+        user(state, payload) { state.user = payload; },
+    },
 };

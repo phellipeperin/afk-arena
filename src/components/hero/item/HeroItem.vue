@@ -38,7 +38,9 @@
 </template>
 
 <script>
-    import firebase from 'firebase'; // TODO must go to a mixin or store
+    import firebase from 'firebase';
+
+    import feedback from '../../feedback/feedback';
 
     import HeroItemFaction from './HeroItemFaction.vue';
     import HeroItemType from './HeroItemType.vue';
@@ -53,6 +55,7 @@
             HeroItemPower,
             HeroItemEquips,
         },
+        mixins: [feedback],
         props: {
             hero: { type: Object, required: true },
         },
@@ -81,12 +84,8 @@
             setAscensionColor(color) { this.ascensionColor = color; },
             saveToFirebase(dbObj) {
                 firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).set(dbObj, { merge: true })
-                    .then(() => {
-                        console.log('Document successfully written!');
-                    })
-                    .catch((error) => {
-                        console.error('Error writing document: ', error);
-                    });
+                    .then(() => { this.showMessage('Salvo com sucesso!', 'success'); })
+                    .catch(() => { this.showMessage('Ops! Aconteceu algum problema ao salvar.', 'success'); });
             },
         },
     };

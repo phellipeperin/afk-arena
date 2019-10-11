@@ -1,14 +1,14 @@
 <template>
     <v-row
         justify="center"
-        class="mt-8"
+        class="mt-6"
     >
         <v-col
             cols="12"
             md="4"
             class="text-center"
         >
-            <h6 class="display-1">LOGIN</h6>
+            <h6 class="display-1 mb-4">LOGIN</h6>
 
             <v-text-field
                 v-model="user.email"

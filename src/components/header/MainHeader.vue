@@ -10,7 +10,7 @@
         </v-toolbar-title>
 
         <v-spacer />
-        <v-toolbar-items>
+        <v-toolbar-items v-if="$store.state.user.user">
             <v-btn
                 text
                 @click="logout"
@@ -22,11 +22,15 @@
 </template>
 
 <script>
+    import firebase from 'firebase';
+
     export default {
         name: 'MainHeader',
         methods: {
             logout() {
-                // TODO
+                firebase.auth().signOut().then(() => {
+                    this.$router.replace('/');
+                });
             },
         },
     };
