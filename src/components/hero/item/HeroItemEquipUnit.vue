@@ -29,7 +29,7 @@
             };
         },
         created() {
-            this.status = this.initialStatus;
+            this.status = this.initialStatus || false;
         },
         methods: {
             change() { this.$emit('change', this.status); },

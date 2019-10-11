@@ -71,8 +71,8 @@
                 this.signatureLevels.push({ text: `+${i}`, value: i });
             }
 
-            this.ascension = this.initialAscension;
-            this.signature = this.initialSignature;
+            this.ascension = this.initialAscension || 0;
+            this.signature = this.initialSignature || 0;
             this.$emit('changeAscensionColor', this.getAscensionColor());
         },
         methods: {

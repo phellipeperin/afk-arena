@@ -24,6 +24,8 @@
             <v-divider />
             <hero-item-power
                 :faction="hero.faction"
+                :initial-ascension="databaseInfo ? databaseInfo.ascension : 0"
+                :initial-signature="databaseInfo ? databaseInfo.signature : 0"
                 @changeAscension="setAscension"
                 @changeSignature="setSignature"
                 @changeAscensionColor="setAscensionColor"
@@ -31,6 +33,7 @@
             <v-divider />
             <hero-item-equips
                 :color="ascensionColor"
+                :initial-equips="databaseInfo ? databaseInfo.equips || {} : {}"
                 @changeEquip="setEquip"
             />
         </v-card>
@@ -58,6 +61,7 @@
         mixins: [feedback],
         props: {
             hero: { type: Object, required: true },
+            databaseInfo: { type: Object, default: () => {} },
         },
         data() {
             return {

@@ -9,6 +9,7 @@
                 :key="equip"
                 :color="color"
                 :label="equip"
+                :initial-status="initialEquips[equip]"
                 @change="(status) => changeEquip(equip, status)"
             />
         </v-row>
@@ -23,6 +24,7 @@
         components: { HeroItemEquipUnit },
         props: {
             color: { type: String, default: 'primary' },
+            initialEquips: { type: Object, default: () => {} },
         },
         data() {
             return {

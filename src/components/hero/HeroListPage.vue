@@ -20,6 +20,7 @@
             >
                 <hero-item
                     :hero="hero"
+                    :database-info="database[hero.id]"
                 />
             </v-col>
         </v-row>
@@ -41,16 +42,15 @@
         data() {
             return {
                 filteredHeroList: [],
-                databaseList: [],
+                database: {},
             };
         },
         created() {
             this.filteredHeroList = Object.freeze(this.heroList);
-            firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).get().then((doc) => {
-                if (doc.exists) {
-                    console.log(doc);
-                }
-            });
+            firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).get()
+                .then((doc) => {
+                    if (doc.exists) this.database = doc.data();
+                });
         },
         methods: {
             applyFilter(filter) {
