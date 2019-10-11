@@ -28,7 +28,7 @@
         },
         data() {
             return {
-                equipList: ['WEAPON', 'HEAD', 'BODY', 'FEET'],
+                equipList: ['WEAPON', 'BODY', 'HEAD', 'FEET'],
             };
         },
         methods: {
