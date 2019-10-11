@@ -10,7 +10,19 @@
 
         <v-subheader>Heroes</v-subheader>
         <v-divider />
-        <v-row>
+
+        <div
+            v-if="loading"
+            class="text-center mt-6"
+        >
+            <v-progress-circular
+                indeterminate
+                color="primary"
+                size="80"
+            />
+        </div>
+
+        <v-row v-if="!loading">
             <v-col
                 v-for="hero in filteredHeroList"
                 :key="hero.name"
@@ -41,6 +53,7 @@
         mixins: [heroDatabase],
         data() {
             return {
+                loading: true,
                 filteredHeroList: [],
                 database: {},
             };
@@ -49,7 +62,8 @@
             this.filteredHeroList = Object.freeze(this.heroList);
             firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).get()
                 .then((doc) => {
-                    if (doc.exists) this.database = doc.data();
+                    if (doc.exists) { this.database = doc.data(); }
+                    this.loading = false;
                 });
         },
         methods: {

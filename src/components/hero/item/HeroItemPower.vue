@@ -6,7 +6,7 @@
         <v-row>
             <v-col
                 cols="12"
-                sm="7"
+                :sm="ascension >= 5 ? 7 : 12"
             >
                 <v-select
                     v-model="ascension"
@@ -18,6 +18,7 @@
                 />
             </v-col>
             <v-col
+                v-if="ascension >= 5"
                 cols="12"
                 sm="5"
             >
@@ -40,7 +41,7 @@
         props: {
             faction: { type: String, required: true },
             initialAscension: { type: Number, default: 0 },
-            initialSignature: { type: Number, default: 0 },
+            initialSignature: { type: Number, default: -1 },
         },
         data() {
             return {
@@ -66,13 +67,14 @@
         },
         created() {
             const max = (this.faction === 'CELESTIAL' || this.faction === 'HYPOGEAN') ? 40 : 30;
-            this.signatureLevels.push({ text: 'None', value: 0 });
+            this.signatureLevels.push({ text: 'None', value: -1 });
+            this.signatureLevels.push({ text: '+0', value: 0 });
             for (let i = 1; i <= max; i++) {
                 this.signatureLevels.push({ text: `+${i}`, value: i });
             }
 
             this.ascension = this.initialAscension || 0;
-            this.signature = this.initialSignature || 0;
+            this.signature = this.initialSignature || -1;
             this.$emit('changeAscensionColor', this.getAscensionColor());
         },
         methods: {

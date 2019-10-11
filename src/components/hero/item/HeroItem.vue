@@ -5,7 +5,10 @@
         class="pa-0 ma-0"
         :color="ascensionColor"
     >
-        <v-card outlined>
+        <v-card
+            outlined
+            class="pl-1"
+        >
             <v-list-item three-line>
                 <v-list-item-content>
                     <v-list-item-title class="headline">{{ hero.name }}</v-list-item-title>
@@ -88,8 +91,8 @@
             setAscensionColor(color) { this.ascensionColor = color; },
             saveToFirebase(dbObj) {
                 firebase.firestore().collection('heroes').doc(firebase.auth().currentUser.uid).set(dbObj, { merge: true })
-                    .then(() => { this.showMessage('Salvo com sucesso!', 'success'); })
-                    .catch(() => { this.showMessage('Ops! Aconteceu algum problema ao salvar.', 'success'); });
+                    .then(() => { this.showMessage('Successfully saved!', 'success'); })
+                    .catch(() => { this.showMessage('Ouch! Something went wrong.', 'error'); });
             },
         },
     };
